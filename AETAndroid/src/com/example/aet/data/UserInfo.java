@@ -22,10 +22,6 @@ public class UserInfo {
 	
 	private String idCardNum;
 	
-	private String eMail;
-	
-	private String phoneNum;
-	
 	private int gender;
 	
 	private int age;
@@ -34,7 +30,7 @@ public class UserInfo {
 	
 	private float weight;
 	
-	private String address;
+	private int type;
 
 	public String getId() {
 		return id;
@@ -58,22 +54,6 @@ public class UserInfo {
 
 	public void setIdCardNum(String idCardNum) {
 		this.idCardNum = idCardNum;
-	}
-
-	public String geteMail() {
-		return eMail;
-	}
-
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
-
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
 	}
 
 	public int getGender() {
@@ -108,14 +88,14 @@ public class UserInfo {
 		this.weight = weight;
 	}
 
-	public String getAddress() {
-		return address;
+	public int getType() {
+		return type;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setType(int type) {
+		this.type = type;
 	}
-	
+
 	public static UserInfo parsUserInfo(final String data,final DataPar dataPar){
 		UserInfo userInfo=null;
 		if(data!=null&&dataPar!=null){

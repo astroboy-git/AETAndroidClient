@@ -28,11 +28,8 @@ public class JsonParsUtil {
 			if (userJson != null) {
 				userInfo = new UserInfo(userJson.optString("id"));
 				userInfo.setName(userJson.optString("name"));
-				userInfo.setAddress(userJson.optString("address"));
 				userInfo.setAge(userJson.optInt("age"));
-				userInfo.seteMail(userJson.optString("mail"));
-				userInfo.setGender(userJson.optInt("gender"));
-				userInfo.setPhoneNum(userJson.optString("phoneNum"));
+				userInfo.setGender(userJson.optInt("gender"));;
 				userInfo.setHeight(userJson.optInt("height"));
 				userInfo.setWeight(userJson.optInt("weight"));
 			}

@@ -37,7 +37,6 @@ import com.example.aet.data.LoginInfo;
 import com.example.aet.data.OrganInfo;
 import com.example.aet.data.RegisterInfo;
 import com.example.aet.data.RequestResult;
-import com.example.aet.data.UserInfo;
 import com.example.aet.data.utils.JsonParsUtil;
 
 /**
@@ -202,10 +201,6 @@ public class RequestManager {
 		RequestResult result = new RequestResult();
 		registerInfo.getAccount();
 		registerInfo.getPassWord();
-		UserInfo userInfo=registerInfo.getUser();
-		userInfo.geteMail();
-		userInfo.getName();
-		userInfo.getPhoneNum();
 		return result;
 	}
 	/**
