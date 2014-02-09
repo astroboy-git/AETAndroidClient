@@ -1,12 +1,12 @@
 package com.example.aet.activitys;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Handler.Callback;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.os.Handler.Callback;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 /**
  * 
@@ -16,7 +16,7 @@ import android.widget.Toast;
  *
  * @Version 1.0
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 	
 	private Handler mUiHandler;
 	

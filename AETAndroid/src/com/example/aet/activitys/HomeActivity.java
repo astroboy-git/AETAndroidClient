@@ -130,9 +130,11 @@ public class HomeActivity extends BaseActivity {
 	private void toStartActivity(final String category) {
 		if(!TextUtils.isEmpty(category)){
 			Intent intent=new Intent();
-			if("画室".equals(category)||"文化机构".equals(category)){
+			intent.putExtra("category", category);
+			if("文化机构".equals(category)){
 				intent.setClass(this, OrganListActivity.class);
-				intent.putExtra("category", category);
+			}else if("画室".equals(category)){
+				intent.setClass(this, AtelierActivity.class);
 			}
 			startActivity(intent);
 		}

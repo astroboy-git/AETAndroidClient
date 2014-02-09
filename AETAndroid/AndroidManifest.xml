@@ -7,10 +7,10 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    
+
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
-    <uses-permission android:name="android.permission.INTERNET" />  
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  
+	<uses-permission android:name="android.permission.INTERNET" />  
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>  
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <application
@@ -30,6 +30,10 @@
         </activity>
         <activity android:name="com.example.aet.activitys.UserCenterActivity"></activity>
         <activity android:name="com.example.aet.activitys.OrganListActivity"></activity>
+        <activity
+            android:name=".activitys.AtelierActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

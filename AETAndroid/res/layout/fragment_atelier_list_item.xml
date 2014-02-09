@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:duplicateParentState="false"
+    android:background="@drawable/atelier_list_item_bg_selector" >
+
+    <FrameLayout
+        android:id="@+id/layAtelierThumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:duplicateParentState="false" >
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="@dimen/atelier_list_item_logo_width"
+            android:layout_height="@dimen/atelier_list_item_logo_height"
+            android:duplicateParentState="false"
+            android:scaleType="fitCenter"
+            android:src="#ff0000" />
+
+        <ImageView
+            android:id="@+id/imgHonesty"
+            android:layout_width="@dimen/atelier_list_item_honesty_width"
+            android:layout_height="@dimen/atelier_list_item_honesty_height"
+            android:duplicateParentState="false"
+            android:scaleType="fitCenter"
+            android:src="@drawable/atelier_list_item_honesty_selector" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10pt"
+        android:layout_toRightOf="@id/layAtelierThumb"
+        android:duplicateParentState="false"
+        android:gravity="center_vertical|left"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:duplicateParentState="false"
+            android:text="老鹰画室"
+            android:textColor="#111111"
+            android:textSize="@dimen/atelier_list_item_name_size" />
+
+        <TextView
+            android:id="@+id/txvNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="false"
+            android:text="120人"
+            android:textColor="#666666"
+            android:textSize="@dimen/atelier_list_item_number_size" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgFocus"
+        android:layout_width="@dimen/atelier_list_item_focus_width"
+        android:layout_height="@dimen/atelier_list_item_focus_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:duplicateParentState="false"
+        android:scaleType="fitCenter"
+        android:src="@drawable/atelier_list_item_focus_selector" />
+
+</RelativeLayout>
