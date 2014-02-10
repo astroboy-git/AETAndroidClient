@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import android.widget.SimpleAdapter.ViewBinder;
 import android.widget.TextView;
 
@@ -58,10 +59,10 @@ public class AtelierListFragment extends Fragment {
 
 		String item_tags[] = { "logo", "honesty", "name", "number", "focus",
 				"item_bg" };
-		
+
 		ArrayList<AtelierShortInfo> ateliers = SimulateData
 				.getAtelierShortInfos();
-		
+
 		for (AtelierShortInfo info : ateliers) {
 			HashMap<String, Object> item = new HashMap<String, Object>(
 					item_tags.length);
@@ -108,6 +109,7 @@ public class AtelierListFragment extends Fragment {
 				break;
 			case R.id.imgFocus:
 				view.setSelected((Boolean) data);
+				view.setOnClickListener(mClickListener);
 				break;
 			case R.id.layItem:
 				view.setSelected((Boolean) data);
@@ -116,6 +118,20 @@ public class AtelierListFragment extends Fragment {
 
 			return true;
 		}
+
+		private View.OnClickListener mClickListener = new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				int id = v.getId();
+
+				switch (id) {
+				case R.id.imgFocus:
+					Toast.makeText(getActivity(), "关注", 1).show();
+					break;
+				}
+			}
+		};
 	};
 
 }
