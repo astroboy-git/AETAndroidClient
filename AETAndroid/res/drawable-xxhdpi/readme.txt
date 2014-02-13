@@ -1,0 +1,1 @@
+drawable-xxdpi 文件夹下存放临时预览图片

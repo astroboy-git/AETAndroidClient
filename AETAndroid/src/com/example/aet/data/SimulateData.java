@@ -75,7 +75,6 @@ public class SimulateData {
 			}
 		});
 
-		Log.i(TAG, data.toString());
 		return data;
 	}
 

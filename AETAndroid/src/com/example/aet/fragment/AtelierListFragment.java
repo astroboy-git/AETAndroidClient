@@ -3,19 +3,23 @@ package com.example.aet.fragment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 import android.widget.SimpleAdapter.ViewBinder;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aet.R;
+import com.example.aet.activitys.AtelierActivity;
 import com.example.aet.data.AddressInfo;
 import com.example.aet.data.AtelierShortInfo;
 import com.example.aet.data.SimulateData;
@@ -26,7 +30,7 @@ import com.example.aet.data.SimulateData;
  * @since Jan 20, 2014
  * @version 1.0
  */
-public class AtelierListFragment extends Fragment {
+public class AtelierListFragment extends BaseFragment {
 	private static final String TAG = "AETAndroid.AtelierFragment";
 
 	private static final String TAG_ADDRESS = "tag_address";
@@ -85,6 +89,19 @@ public class AtelierListFragment extends Fragment {
 		adapter.setViewBinder(mViewBinder);
 
 		mListView.setAdapter(adapter);
+
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Log.i(TAG, "@Method --> onItemClick: " + id);
+				
+				Intent intent = new Intent(getActivity(), AtelierActivity.class);
+				startActivity(intent);
+				
+			}
+		});
 
 	}
 

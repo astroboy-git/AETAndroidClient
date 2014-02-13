@@ -8,12 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#efefef"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@android:color/transparent"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@color/transparent"
         android:dividerHeight="6dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="6dp"
+        android:listSelector="@color/transparent"
         android:scrollbars="none" />
 
 </LinearLayout>

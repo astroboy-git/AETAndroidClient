@@ -134,7 +134,7 @@ public class HomeActivity extends BaseActivity {
 			if("文化机构".equals(category)){
 				intent.setClass(this, OrganListActivity.class);
 			}else if("画室".equals(category)){
-				intent.setClass(this, AtelierActivity.class);
+				intent.setClass(this, AtelierListActivity.class);
 			}
 			startActivity(intent);
 		}
