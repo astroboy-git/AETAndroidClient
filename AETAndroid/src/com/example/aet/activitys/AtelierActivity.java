@@ -12,8 +12,7 @@ import com.example.aet.R;
 import com.example.aet.data.AddressInfo;
 import com.example.aet.data.SimulateData;
 import com.example.aet.fragment.AtelierIntroduceFragment;
-import com.example.aet.fragment.AtelierListFragment;
-import com.example.aet.fragment.BaseFragment;
+import com.example.aet.fragment.AtelierPaintsFragment;
 
 /**
  * 
@@ -69,6 +68,9 @@ public class AtelierActivity extends BaseSlideTabActivity {
 				switch (index) {
 				case 0:
 					fragment = new AtelierIntroduceFragment();
+					break;
+				case 2:
+					fragment = new AtelierPaintsFragment();
 					break;
 
 				default:
