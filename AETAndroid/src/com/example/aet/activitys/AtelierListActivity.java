@@ -1,7 +1,7 @@
 package com.example.aet.activitys;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,7 +22,7 @@ import com.example.aet.fragment.AtelierListFragment;
  */
 public class AtelierListActivity extends BaseSlideTabActivity {
 
-	private LinkedList<AtelierListFragment> mAtelierList;
+	private HashMap<Integer, Fragment> mFragments;
 
 	private ArrayList<AddressInfo> mAddrs;
 
@@ -31,13 +31,13 @@ public class AtelierListActivity extends BaseSlideTabActivity {
 		super.onCreate(savedInstanceState);
 
 		initView(R.layout.activity_atelier_list);
-		
+
 		mAddrs = getAddresses();
 		String[] names = { "上海", "北京", "江苏", "浙江" };
 		setTabNames(names);
 		setIndicatorCount(names.length);
-		
-		mAtelierList = new LinkedList<AtelierListFragment>();
+
+		mFragments = new HashMap<Integer, Fragment>();
 		setPagerAdapter(new AtelierListAdapter(getSupportFragmentManager()));
 	}
 
@@ -59,13 +59,13 @@ public class AtelierListActivity extends BaseSlideTabActivity {
 		@Override
 		public Fragment getItem(int index) {
 
-			if (index >= mAtelierList.size() || mAtelierList.get(index) == null) {
+			if (index >= mFragments.size() || mFragments.get(index) == null) {
 				AtelierListFragment fragment = AtelierListFragment
 						.create(mAddrs.get(index));
-				mAtelierList.add(fragment);
+				mFragments.put(index, fragment);
 			}
 
-			return mAtelierList.get(index);
+			return mFragments.get(index);
 		}
 
 		@Override

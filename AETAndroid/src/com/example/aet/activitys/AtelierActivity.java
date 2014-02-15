@@ -1,7 +1,7 @@
 package com.example.aet.activitys;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.example.aet.R;
 import com.example.aet.data.AddressInfo;
 import com.example.aet.data.SimulateData;
+import com.example.aet.fragment.AtelierEclatFragment;
 import com.example.aet.fragment.AtelierIntroduceFragment;
 import com.example.aet.fragment.AtelierPaintsFragment;
 
@@ -23,7 +24,7 @@ import com.example.aet.fragment.AtelierPaintsFragment;
  */
 public class AtelierActivity extends BaseSlideTabActivity {
 
-	private LinkedList<Fragment> mFragmentList;
+	private HashMap<Integer, Fragment> mFragments;
 
 	private ArrayList<AddressInfo> mAddrs;
 
@@ -37,7 +38,7 @@ public class AtelierActivity extends BaseSlideTabActivity {
 		String[] names = { "简介", "全景", "作评", "辉煌成就" };
 		setTabNames(names);
 
-		mFragmentList = new LinkedList<Fragment>();
+		mFragments = new HashMap<Integer, Fragment>(names.length);
 		setPagerAdapter(new AtelierListAdapter(getSupportFragmentManager()));
 	}
 
@@ -59,8 +60,7 @@ public class AtelierActivity extends BaseSlideTabActivity {
 		@Override
 		public Fragment getItem(int index) {
 
-			if (index >= mFragmentList.size()
-					|| mFragmentList.get(index) == null) {
+			if (index >= mFragments.size() || mFragments.get(index) == null) {
 				// AtelierListFragment fragment = AtelierListFragment
 				// .create(mAddrs.get(index));
 
@@ -69,18 +69,20 @@ public class AtelierActivity extends BaseSlideTabActivity {
 				case 0:
 					fragment = new AtelierIntroduceFragment();
 					break;
+				case 1:
+					fragment = new AtelierIntroduceFragment();
+					break;
 				case 2:
 					fragment = new AtelierPaintsFragment();
 					break;
-
-				default:
-					fragment = new AtelierIntroduceFragment();
+				case 3:
+					fragment = new AtelierEclatFragment();
 					break;
 				}
-				mFragmentList.add(fragment);
+				mFragments.put(index, fragment);
 			}
 
-			return mFragmentList.get(index);
+			return mFragments.get(index);
 		}
 
 		@Override
