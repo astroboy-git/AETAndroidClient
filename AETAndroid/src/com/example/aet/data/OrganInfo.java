@@ -7,7 +7,7 @@ package com.example.aet.data;
  *
  * @Version 1.0
  */
-public class OrganInfo {
+public class OrganInfo extends BaseInfo{
 	
 	private String id;
 	

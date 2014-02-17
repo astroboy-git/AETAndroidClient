@@ -7,7 +7,7 @@ package com.example.aet.data;
  *
  * @Version 1.0
  */
-public class RequestResult {
+public class RequestResult extends BaseInfo{
 	
 	private int resultCode;
 	

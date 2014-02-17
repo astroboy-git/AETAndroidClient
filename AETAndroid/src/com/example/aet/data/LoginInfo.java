@@ -7,7 +7,7 @@ package com.example.aet.data;
  *
  * @Version 1.0
  */
-public class LoginInfo {
+public class LoginInfo extends BaseInfo{
 	
 	public LoginInfo(String account,String passWord){
 		setAccount(account);

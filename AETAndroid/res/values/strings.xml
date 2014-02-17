@@ -39,6 +39,8 @@
     <string name="launcher_about">艺考部落</string>
     <string name="studio">画室</string>
     <string name="cultural_organization">文化机构</string>
+    
+    <string name="not_open">暂未开放</string>
     <string-array name="categorys">
         <item>画室</item>
         <item>文化机构</item>

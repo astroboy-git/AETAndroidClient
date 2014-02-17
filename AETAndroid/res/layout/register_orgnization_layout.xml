@@ -80,50 +80,45 @@
             android:inputType="textPersonName" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+<!--     <LinearLayout -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="wrap_content" > -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/register_permissions" />
+<!--         <TextView -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:text="@string/register_permissions" /> -->
 
-        <EditText
-            android:id="@+id/permissionsEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
+<!--         <EditText -->
+<!--             android:id="@+id/permissionsEditText" -->
+<!--             android:layout_width="0dp" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_weight="1" -->
+<!--             android:ems="10" -->
+<!--             android:inputType="text" /> -->
+<!--     </LinearLayout> -->
+
+    <RadioGroup
+        android:id="@+id/organRadioGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
+        android:layout_marginLeft="50dp"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent" >
 
-        <RadioGroup
-            android:id="@+id/organRadioGroup"
+        <RadioButton
+            android:id="@+id/studioRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent" >
+            android:layout_marginRight="50dp"
+            android:checked="true"
+            android:text="@string/studio" />
 
-            <RadioButton
-                android:id="@+id/studioRadio0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:checked="true"
-                android:text="@string/studio" />
-
-            <RadioButton
-                android:id="@+id/organizationRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cultural_organization" />
-        </RadioGroup>
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/organizationRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cultural_organization" />
+    </RadioGroup>
 
 </LinearLayout>

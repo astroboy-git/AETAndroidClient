@@ -41,7 +41,7 @@ public class HomeActivity extends BaseActivity {
 
 	private static final int MSG_UI_FINISH_INITDATA = 0x00010202;
 
-	private static final int TO_LOGIN_CODE = 0x0011000;
+	private static final int TO_LOGIN_CODE = 0x01;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -128,15 +128,18 @@ public class HomeActivity extends BaseActivity {
 	}
 
 	private void toStartActivity(final String category) {
-		if(!TextUtils.isEmpty(category)){
-			Intent intent=new Intent();
+		if (!TextUtils.isEmpty(category)) {
+			Intent intent = new Intent();
 			intent.putExtra("category", category);
-			if("文化机构".equals(category)){
+			if ("文化机构".equals(category)) {
 				intent.setClass(this, OrganListActivity.class);
-			}else if("画室".equals(category)){
+				startActivity(intent);
+			} else if ("画室".equals(category)) {
 				intent.setClass(this, AtelierListActivity.class);
+				startActivity(intent);
+			} else {
+				showShortToast(R.string.not_open);
 			}
-			startActivity(intent);
 		}
 	}
 

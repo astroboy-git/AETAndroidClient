@@ -6,7 +6,7 @@ package com.example.aet.data;
  * @author swordy
  * 
  */
-public class AtelierShortInfo {
+public class AtelierShortInfo extends BaseInfo{
 	public int logoId; // TODO 暂时用drawable代替
 	
 	public String name;

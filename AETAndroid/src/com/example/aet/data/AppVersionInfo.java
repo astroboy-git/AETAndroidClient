@@ -7,7 +7,7 @@ package com.example.aet.data;
  *
  * @Version 1.0
  */
-public class AppVersionInfo {
+public class AppVersionInfo extends BaseInfo{
 	
 	private int versionCode;
 	

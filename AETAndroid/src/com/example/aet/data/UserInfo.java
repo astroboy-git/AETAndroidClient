@@ -10,7 +10,7 @@ import com.example.aet.data.pars.DataPar;
  *
  * @Version 1.0
  */
-public class UserInfo {
+public class UserInfo extends BaseInfo{
 	
 	public UserInfo(String id){
 		setId(id);
@@ -22,6 +22,10 @@ public class UserInfo {
 	
 	private String idCardNum;
 	
+	private String eMail;
+	
+	private String phoneNum;
+	
 	private int gender;
 	
 	private int age;
@@ -30,7 +34,7 @@ public class UserInfo {
 	
 	private float weight;
 	
-	private int type;
+	private String address;
 
 	public String getId() {
 		return id;
@@ -54,6 +58,22 @@ public class UserInfo {
 
 	public void setIdCardNum(String idCardNum) {
 		this.idCardNum = idCardNum;
+	}
+
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
 	}
 
 	public int getGender() {
@@ -88,14 +108,14 @@ public class UserInfo {
 		this.weight = weight;
 	}
 
-	public int getType() {
-		return type;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
+	
 	public static UserInfo parsUserInfo(final String data,final DataPar dataPar){
 		UserInfo userInfo=null;
 		if(data!=null&&dataPar!=null){

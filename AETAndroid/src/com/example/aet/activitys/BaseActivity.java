@@ -1,6 +1,8 @@
 package com.example.aet.activitys;
 
 
+import com.example.aet.data.UserInfo;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;

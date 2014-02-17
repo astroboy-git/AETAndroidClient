@@ -9,8 +9,13 @@ import java.io.Serializable;
  * @since Jan 20, 2014
  * @version 1.0
  */
-public class AddressInfo implements Serializable
+public class AddressInfo extends BaseInfo implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public String id;
 
 	public String name;

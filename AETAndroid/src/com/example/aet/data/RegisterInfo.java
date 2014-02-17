@@ -1,26 +1,22 @@
 package com.example.aet.data;
-
 /**
  * 
  * @author Jin Binbin
- * 
+ *
  * @2013年10月15日
- * 
+ *
  * @Version 1.0
  */
-public class RegisterInfo {
-
-	public RegisterInfo(String phoneNum, String account, String passWord) {
-		setPhoneNum(phoneNum);
+public class RegisterInfo extends BaseInfo{
+	
+	public RegisterInfo(String account,String passWord){
 		setAccount(account);
 		setPassWord(passWord);
 	}
-
+	
 	private String account;
-
+	
 	private String passWord;
-
-	private String phoneNum;
 
 	public String getAccount() {
 		return account;
@@ -36,14 +32,6 @@ public class RegisterInfo {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
-	}
-
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
 	}
 
 }

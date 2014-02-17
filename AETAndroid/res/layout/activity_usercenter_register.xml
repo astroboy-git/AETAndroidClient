@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/user_center_bg"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/typeRadioGroup"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/studentButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/studentRadio"
+            style="@style/main_tab_bottom"
+            android:checked="true"
             android:text="@string/student" />
 
-        <Button
-            android:id="@+id/teacherButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/teacherRadio"
+            style="@style/main_tab_bottom"
             android:text="@string/teacher" />
 
-        <Button
-            android:id="@+id/organizationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/organizationRadio"
+            style="@style/main_tab_bottom"
             android:text="@string/organization" />
+    </RadioGroup>
 
-    </LinearLayout>
-
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/formLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/typeRadioGroup"
+        android:layout_marginTop="10dp" >
+    </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/formLinearLayout"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal" >
 
         <CheckBox
@@ -52,20 +63,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register_clause" />
-
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/okButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/ok" />
 
-        <Button
-            android:id="@+id/okButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ok" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

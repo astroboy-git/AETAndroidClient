@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
 
-import android.util.Log;
-
 import com.example.aet.R;
 
 /**
@@ -15,7 +13,7 @@ import com.example.aet.R;
  * @since Jan 20, 2014
  * @version 1.0
  */
-public class SimulateData {
+public class SimulateData extends BaseInfo{
 	public static final String TAG = "SimulateData";
 	
 	public static ArrayList<AddressInfo> getAddresses() {
