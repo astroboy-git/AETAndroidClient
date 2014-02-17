@@ -11,6 +11,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.example.aet.core.Urls;
 import com.example.aet.data.AppVersionInfo;
 import com.example.aet.data.RequestResult;
 import com.example.aet.data.utils.JsonParsUtil;
@@ -53,8 +54,9 @@ public class VersionManager {
 		AppVersionInfo newVersionInfo = null;
 		AppVersionInfo currentVersionInfo = getCurrentVersionInfo();
 		if (currentVersionInfo != null) {
-			RequestResult result = RequestManager.getInstance()
-					.getNewVersionInfo();
+			String url = new StringBuilder(Urls.SERVER_IP).append(
+					Urls.URL_GET_VERSION).toString();
+			RequestResult result = RequestManager.getInstance().doGet(url);
 			if (result.getResultCode() == HttpStatus.SC_OK) {
 				String content = result.getResultContent();
 				newVersionInfo = JsonParsUtil.parsAppVersionInfo(content);

@@ -1,8 +1,12 @@
 package com.example.aet.managers;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.example.aet.core.Urls;
 import com.example.aet.data.LoginInfo;
 import com.example.aet.data.RegisterInfo;
 import com.example.aet.data.RequestResult;
@@ -56,7 +60,12 @@ public class UserManager {
 	}
 	
 	public RequestResult login(final LoginInfo loginInfo){
-		RequestResult result=RequestManager.getInstance().login(loginInfo);
+		NameValuePair[] params = new NameValuePair[2];
+		params[0] = new BasicNameValuePair("account", loginInfo.getAccount());
+		params[1] = new BasicNameValuePair("password", loginInfo.getPassWord());
+		String url = new StringBuilder(Urls.SERVER_IP).append(Urls.URL_TO_LOGIN)
+				.toString();
+		RequestResult result=RequestManager.getInstance().doPost(url, params);
 		if (result!=null&&result.getResultCode() == 200) {
 			UserInfo user=new UserInfo(loginInfo.getAccount());
 			setLoginInfo(loginInfo);
@@ -70,8 +79,13 @@ public class UserManager {
 		clearUserInfo();
 	}
 	
-	public RequestResult register(RegisterInfo registerInfo){
-		RequestResult result=RequestManager.getInstance().register(registerInfo);
+	public RequestResult registerStudent(RegisterInfo registerInfo){
+		NameValuePair[] params = new NameValuePair[2];
+		params[0] = new BasicNameValuePair("account", registerInfo.getAccount());
+		params[1] = new BasicNameValuePair("password", registerInfo.getPassWord());
+		String url = new StringBuilder(Urls.SERVER_IP).append(Urls.URL_STUDENT_TO_REGISTER)
+				.toString();
+		RequestResult result=RequestManager.getInstance().doPost(url, params);
 		if(result!=null&&result.getResultCode() == 200)
 		{
 			UserInfo user=null;
@@ -80,15 +94,30 @@ public class UserManager {
 		return result;
 	}
 	
-	public void switchUser(LoginInfo info){
-		UserInfo user=null;
-		setUserInfo(user);
+	public RequestResult registerTeacher(){
+		RequestResult result=null;
+		return result;
 	}
 	
-	public void modifyUserInfo(RegisterInfo info)
+	public RequestResult registerOrgin(){
+		RequestResult result=null;
+		return result;
+	}
+	
+	
+	public RequestResult switchUser(LoginInfo info){
+		UserInfo user=null;
+		setUserInfo(user);
+		RequestResult result=null;
+		return result;
+	}
+	
+	public RequestResult modifyUserInfo(RegisterInfo info)
 	{
 		UserInfo user=null;
 		setUserInfo(user);
+		RequestResult result=null;
+		return result;
 	}
 	
 	public void cancalUser(LoginInfo info){

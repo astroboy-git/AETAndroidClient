@@ -23,7 +23,6 @@ import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -33,12 +32,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.example.aet.core.Constants;
 import com.example.aet.core.Urls;
-import com.example.aet.data.LoginInfo;
-import com.example.aet.data.OrganInfo;
-import com.example.aet.data.RegisterInfo;
 import com.example.aet.data.RequestResult;
-import com.example.aet.data.UserInfo;
-import com.example.aet.data.utils.JsonParsUtil;
 
 /**
  * 
@@ -115,7 +109,7 @@ public class RequestManager {
 	 * @param url
 	 * @return
 	 */
-	private RequestResult doGet(String url) {
+	public RequestResult doGet(String url) {
 		RequestResult result = new RequestResult();
 		HttpGet request = new HttpGet(url);
 		try {
@@ -143,7 +137,7 @@ public class RequestManager {
 	 * @param params
 	 * @return
 	 */
-	private RequestResult doPost(String url, NameValuePair... params) {
+	public RequestResult doPost(String url, NameValuePair... params) {
 		RequestResult result = new RequestResult();
 		try {
 			List<NameValuePair> formparams = new ArrayList<NameValuePair>();
@@ -168,65 +162,6 @@ public class RequestManager {
 			e.printStackTrace();
 		}
 		return result;
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public RequestResult getNewVersionInfo() {
-		// TODO Auto-generated method stub
-		String url = new StringBuilder(serverUrl).append(Urls.URL_GET_VERSION)
-				.toString();
-		return doGet(url);
-	}
-	/**
-	 * 
-	 * @param loginInfo
-	 * @return
-	 */
-	public RequestResult login(final LoginInfo loginInfo) {
-		// TODO Auto-generated method stub
-		NameValuePair[] params = new NameValuePair[2];
-		params[0] = new BasicNameValuePair("account", loginInfo.getAccount());
-		params[1] = new BasicNameValuePair("password", loginInfo.getPassWord());
-		String url = new StringBuilder(serverUrl).append(Urls.URL_TO_LOGIN)
-				.toString();
-		doPost(url, params);
-		RequestResult result = new RequestResult();
-		result.setResultCode(200);
-		return result;
-	}
-	
-	public RequestResult register(final RegisterInfo registerInfo)
-	{
-		RequestResult result = new RequestResult();
-		registerInfo.getAccount();
-		registerInfo.getPassWord();
-		return result;
-	}
-	/**
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public List<OrganInfo> getOrganList(final String type) {
-		List<OrganInfo> organInfos = new ArrayList<OrganInfo>();
-		String url = new StringBuilder(serverUrl)
-				.append(Urls.URL_GET_ORGANLIST).append(type).toString();
-		RequestResult result = doGet(url);
-		if (result.getResultCode() == 200) {
-			organInfos.addAll(JsonParsUtil.parsOrganList(result
-					.getResultContent()));
-		}
-		for(int i=0;i<10;i++){
-			OrganInfo organInfo=new OrganInfo();
-			organInfo.setId(String.valueOf(i));
-			organInfo.setName("lufei");
-			organInfo.setType(type);
-			organInfo.setVip(true);
-			organInfos.add(organInfo);
-		}
-		return organInfos;
 	}
 
 }

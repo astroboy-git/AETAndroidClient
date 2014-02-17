@@ -2,10 +2,6 @@ package com.example.aet.activitys;
 
 import java.util.List;
 
-import com.example.aet.R;
-import com.example.aet.data.OrganInfo;
-import com.example.aet.managers.RequestManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -16,6 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.aet.R;
+import com.example.aet.data.OrganInfo;
+import com.example.aet.managers.OrganManager;
 
 /**
  * 
@@ -55,7 +55,7 @@ public class OrganListActivity extends BaseActivity {
 		switch (msg.what) {
 		case MSG_PRO_LOAD_ORGANLIST:
 			String type = (String) msg.obj;
-			List<OrganInfo> organInfos = RequestManager.getInstance()
+			List<OrganInfo> organInfos = OrganManager.getInstance(this)
 					.getOrganList(type);
 			sendUiMsg(getUiHandler().obtainMessage(MSG_UI_LOADORGANLIST_FINISH,
 					organInfos));
