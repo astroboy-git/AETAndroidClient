@@ -42,7 +42,7 @@ public class UserCenterActivity extends BaseActivity {
 
 	private CheckBox mAgreeClauseCheckBox;
 
-	private Button mOkButton;
+	private Button mOkButton; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
