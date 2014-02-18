@@ -30,6 +30,15 @@ public class UserManager {
 	
 	private String mToken;
 	
+	public interface RegisterType{
+		
+		public static final int REGISTER_TYPE_STUDENT=0x01;
+		
+		public static final int REGISTER_TYPE_TEACHER=0x02;
+		
+		public static final int REGISTER_TYPE_ORGAN=0x03;
+	}
+	
 	private UserManager() {
 
 	}
@@ -67,10 +76,10 @@ public class UserManager {
 				.toString();
 		RequestResult result=RequestManager.getInstance().doPost(url, params);
 		if (result!=null&&result.getResultCode() == 200) {
-			UserInfo user=new UserInfo(loginInfo.getAccount());
-			setLoginInfo(loginInfo);
+			String json=result.getResultContent();
+			UserInfo user=UserInfo.paresJsonToObject(json, UserInfo.class);
 			setUserInfo(user);
-			setToken("token");
+			setToken("");
 		}
 		return result;
 	}
@@ -78,32 +87,36 @@ public class UserManager {
 	public void logout(UserInfo info){
 		clearUserInfo();
 	}
-	
-	public RequestResult registerStudent(RegisterInfo registerInfo){
-		NameValuePair[] params = new NameValuePair[2];
-		params[0] = new BasicNameValuePair("account", registerInfo.getAccount());
-		params[1] = new BasicNameValuePair("password", registerInfo.getPassWord());
-		String url = new StringBuilder(Urls.SERVER_IP).append(Urls.URL_STUDENT_TO_REGISTER)
-				.toString();
-		RequestResult result=RequestManager.getInstance().doPost(url, params);
-		if(result!=null&&result.getResultCode() == 200)
-		{
-			UserInfo user=null;
-			user=new UserInfo("");
+
+	public RequestResult register(NameValuePair[] params, int registerType) {
+		String url = null;
+		switch (registerType) {
+		case RegisterType.REGISTER_TYPE_STUDENT:
+			url = new StringBuilder(Urls.SERVER_IP).append(
+					Urls.URL_STUDENT_TO_REGISTER).toString();
+			break;
+		case RegisterType.REGISTER_TYPE_TEACHER:
+			url = new StringBuilder(Urls.SERVER_IP).append(
+					Urls.URL_TEACHER_TO_REGISTER).toString();
+			break;
+		case RegisterType.REGISTER_TYPE_ORGAN:
+			new StringBuilder(Urls.SERVER_IP).append(Urls.URL_ORG_TO_REGISTER)
+					.toString();
+			break;
+		default:
+			url = new StringBuilder(Urls.SERVER_IP).append(
+					Urls.URL_STUDENT_TO_REGISTER).toString();
+			break;
+		}
+		RequestResult result = RequestManager.getInstance().doPost(url, params);
+		if (result != null && result.getResultCode() == 200) {
+			String json = result.getResultContent();
+			UserInfo user = UserInfo.paresJsonToObject(json, UserInfo.class);
+			setUserInfo(user);
+			setToken("");
 		}
 		return result;
 	}
-	
-	public RequestResult registerTeacher(){
-		RequestResult result=null;
-		return result;
-	}
-	
-	public RequestResult registerOrgin(){
-		RequestResult result=null;
-		return result;
-	}
-	
 	
 	public RequestResult switchUser(LoginInfo info){
 		UserInfo user=null;

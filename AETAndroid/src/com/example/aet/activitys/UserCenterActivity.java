@@ -1,5 +1,8 @@
 package com.example.aet.activitys;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -17,6 +20,7 @@ import com.example.aet.R;
 import com.example.aet.data.LoginInfo;
 import com.example.aet.data.RequestResult;
 import com.example.aet.managers.UserManager;
+import com.example.aet.managers.UserManager.RegisterType;
 
 /**
  * 
@@ -40,9 +44,13 @@ public class UserCenterActivity extends BaseActivity {
 
 	private static final int MSG_UI_LOGIN_RESULT = 0x20001201;
 
+	private static final int MSG_PRO_TO_REGISTER = 0x20001102;
+
+	private static final int MSG_UI_REGISTER_RESULT = 0x20001202;
+
 	private CheckBox mAgreeClauseCheckBox;
 
-	private Button mOkButton; 
+	private Button mOkButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +150,11 @@ public class UserCenterActivity extends BaseActivity {
 
 	private String organType = "studio";
 
+	private boolean checkRegisterInfo(String phone, String name, String password) {
+		return !TextUtils.isEmpty(phone) && !TextUtils.isEmpty(name)
+				&& !TextUtils.isEmpty(password);
+	}
+
 	private void initOrgizationRegister() {
 		// TODO Auto-generated method stub
 		final EditText phoneNumEditText = (EditText) findViewById(R.id.phoneNumEditText);
@@ -188,7 +201,25 @@ public class UserCenterActivity extends BaseActivity {
 	private void organizationRegister(String phone, String name,
 			String password, String organName, String organType, boolean agree) {
 		// TODO Auto-generated method stub
+		if (checkRegisterInfo(phone, organName, password)) {
+			if (agree) {
+				NameValuePair[] params = new NameValuePair[5];
+				params[0] = new BasicNameValuePair("account", phone);
+				params[1] = new BasicNameValuePair("password", password);
+				params[2] = new BasicNameValuePair("name", name);
+				params[3] = new BasicNameValuePair("organName", organName);
+				params[4] = new BasicNameValuePair("organType", organType);
+				getProHandler().removeMessages(MSG_PRO_TO_REGISTER);
+				getProHandler().sendMessage(
+						getProHandler().obtainMessage(MSG_PRO_TO_REGISTER,
+								RegisterType.REGISTER_TYPE_ORGAN, 0, params));
 
+			} else {
+				showShortToast(R.string.not_agree_registerclause);
+			}
+		} else {
+			showShortToast(R.string.registerinfo_not_empty);
+		}
 	}
 
 	private void initTeacherRegister() {
@@ -221,7 +252,26 @@ public class UserCenterActivity extends BaseActivity {
 			String password, String name, String school, String subject,
 			boolean agree) {
 		// TODO Auto-generated method stub
+		if (checkRegisterInfo(phone, name, password)) {
+			if (agree) {
+				NameValuePair[] params = new NameValuePair[6];
+				params[0] = new BasicNameValuePair("account", phone);
+				params[1] = new BasicNameValuePair("password", password);
+				params[2] = new BasicNameValuePair("userName", name);
+				params[3] = new BasicNameValuePair("name", name);
+				params[4] = new BasicNameValuePair("school", school);
+				params[4] = new BasicNameValuePair("subject", subject);
+				getProHandler().removeMessages(MSG_PRO_TO_REGISTER);
+				getProHandler().sendMessage(
+						getProHandler().obtainMessage(MSG_PRO_TO_REGISTER,
+								RegisterType.REGISTER_TYPE_TEACHER, 0, params));
 
+			} else {
+				showShortToast(R.string.not_agree_registerclause);
+			}
+		} else {
+			showShortToast(R.string.registerinfo_not_empty);
+		}
 	}
 
 	private void initStudentRegister() {
@@ -254,7 +304,26 @@ public class UserCenterActivity extends BaseActivity {
 			String password, String name, String school, String grade,
 			boolean agree) {
 		// TODO Auto-generated method stub
+		if (checkRegisterInfo(phone, name, password)) {
+			if (agree) {
+				NameValuePair[] params = new NameValuePair[6];
+				params[0] = new BasicNameValuePair("account", phone);
+				params[1] = new BasicNameValuePair("password", password);
+				params[2] = new BasicNameValuePair("userName", name);
+				params[3] = new BasicNameValuePair("name", name);
+				params[4] = new BasicNameValuePair("school", school);
+				params[4] = new BasicNameValuePair("grade", grade);
+				getProHandler().removeMessages(MSG_PRO_TO_REGISTER);
+				getProHandler().sendMessage(
+						getProHandler().obtainMessage(MSG_PRO_TO_REGISTER,
+								RegisterType.REGISTER_TYPE_STUDENT, 0, params));
 
+			} else {
+				showShortToast(R.string.not_agree_registerclause);
+			}
+		} else {
+			showShortToast(R.string.registerinfo_not_empty);
+		}
 	}
 
 	private void initLoginView() {
@@ -321,11 +390,22 @@ public class UserCenterActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		switch (msg.what) {
 		case MSG_PRO_TO_LOGIN:
-			RequestResult result = UserManager.getInstance(this).login(
+			RequestResult loginResult = UserManager.getInstance(this).login(
 					(LoginInfo) msg.obj);
 			getUiHandler().removeMessages(MSG_UI_LOGIN_RESULT);
 			getUiHandler().sendMessage(
-					getUiHandler().obtainMessage(MSG_UI_LOGIN_RESULT, result));
+					getUiHandler().obtainMessage(MSG_UI_LOGIN_RESULT,
+							loginResult));
+			break;
+		case MSG_PRO_TO_REGISTER:
+			NameValuePair[] params = (NameValuePair[]) msg.obj;
+			int type = msg.arg1;
+			RequestResult registerResult = UserManager.getInstance(this)
+					.register(params, type);
+			getUiHandler().removeMessages(MSG_UI_REGISTER_RESULT);
+			getUiHandler().sendMessage(
+					getUiHandler().obtainMessage(MSG_UI_REGISTER_RESULT,
+							registerResult));
 			break;
 		}
 		return super.handlerProThreadMsg(msg);
@@ -336,10 +416,21 @@ public class UserCenterActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		switch (msg.what) {
 		case MSG_UI_LOGIN_RESULT:
-			RequestResult result = (RequestResult) msg.obj;
-			if (result != null && result.getResultCode() == 200) {
+			RequestResult loginResult = (RequestResult) msg.obj;
+			if (loginResult != null && loginResult.getResultCode() == 200) {
 				setResult(RESULT_OK);
 				finish();
+			} else {
+				showShortToast(loginResult.getResultContent());
+			}
+			break;
+		case MSG_UI_REGISTER_RESULT:
+			RequestResult registerResult = (RequestResult) msg.obj;
+			if (registerResult != null && registerResult.getResultCode() == 200) {
+				setResult(RESULT_OK);
+				finish();
+			} else {
+				showShortToast(registerResult.getResultContent());
 			}
 			break;
 		}

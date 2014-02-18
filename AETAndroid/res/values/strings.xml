@@ -39,6 +39,8 @@
     <string name="launcher_about">艺考部落</string>
     <string name="studio">画室</string>
     <string name="cultural_organization">文化机构</string>
+    <string name="registerinfo_not_empty">账号、用户名或密码不能为空</string>
+    <string name="not_agree_registerclause">未同意注册服务条款</string>
     
     <string name="not_open">暂未开放</string>
     <string-array name="categorys">
