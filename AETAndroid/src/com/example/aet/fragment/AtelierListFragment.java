@@ -59,10 +59,10 @@ public class AtelierListFragment extends BaseFragment {
 	}
 
 	private void updateAtelierList() {
-		ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
+		final ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 
-		String item_tags[] = { "logo", "honesty", "name", "number", "focus",
-				"item_bg" };
+		final String item_tags[] = { "logo", "honesty", "name", "number",
+				"focus", "item_bg" };
 
 		ArrayList<AtelierShortInfo> ateliers = SimulateData
 				.getAtelierShortInfos();
@@ -96,10 +96,14 @@ public class AtelierListFragment extends BaseFragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Log.i(TAG, "@Method --> onItemClick: " + id);
-				
+
 				Intent intent = new Intent(getActivity(), AtelierActivity.class);
+				HashMap<String, Object> item = data.get(position);
+				String title = (String) (item != null ? item.get(item_tags[2])
+						: null);
+				intent.putExtra(AtelierActivity.TAG_TITLE, title);
 				startActivity(intent);
-				
+
 			}
 		});
 

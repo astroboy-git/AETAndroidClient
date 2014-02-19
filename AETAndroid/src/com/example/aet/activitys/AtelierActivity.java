@@ -1,12 +1,12 @@
 package com.example.aet.activitys;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.SparseArray;
 
 import com.example.aet.R;
 import com.example.aet.data.AddressInfo;
@@ -24,9 +24,13 @@ import com.example.aet.fragment.AtelierPaintsFragment;
  */
 public class AtelierActivity extends BaseSlideTabActivity {
 
-	private HashMap<Integer, Fragment> mFragments;
+	public static final String TAG_TITLE = "tag_title";
+
+	private SparseArray<Fragment> mFragments;
 
 	private ArrayList<AddressInfo> mAddrs;
+
+	private String[] mCategories;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +38,20 @@ public class AtelierActivity extends BaseSlideTabActivity {
 
 		initView(R.layout.activity_atelier);
 
+		// TODO 动态获取地址
 		mAddrs = getAddresses();
-		String[] names = { "简介", "全景", "作评", "辉煌成就" };
-		setTabNames(names);
+		mCategories = getResources().getStringArray(R.array.atelier_categories);
+		setTabNames(mCategories);
 
-		mFragments = new HashMap<Integer, Fragment>(names.length);
+		mFragments = new SparseArray<Fragment>(mCategories.length);
 		setPagerAdapter(new AtelierListAdapter(getSupportFragmentManager()));
 	}
 
 	@Override
 	protected void initView(int layoutResID) {
-		setContentView(layoutResID);
+		super.initView(layoutResID);
+		String title = getIntent().getStringExtra(TAG_TITLE);
+		setTitleText(title);
 	}
 
 	private ArrayList<AddressInfo> getAddresses() {
@@ -61,9 +68,6 @@ public class AtelierActivity extends BaseSlideTabActivity {
 		public Fragment getItem(int index) {
 
 			if (index >= mFragments.size() || mFragments.get(index) == null) {
-				// AtelierListFragment fragment = AtelierListFragment
-				// .create(mAddrs.get(index));
-
 				Fragment fragment = null;
 				switch (index) {
 				case 0:

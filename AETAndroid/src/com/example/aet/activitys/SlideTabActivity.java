@@ -24,7 +24,7 @@ import com.example.aet.widget.PageIndicator;
  */
 public class SlideTabActivity extends BaseActivity implements
 		ViewPager.OnPageChangeListener {
-	public static final String TAG = "AETAndroid.SlideTabActivity";
+	private static final String TAG = "AETAndroid.SlideTabActivity";
 
 	private TabWidget mTabWidget;
 	private ViewPager mViewPager;

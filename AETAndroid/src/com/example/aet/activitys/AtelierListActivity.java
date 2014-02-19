@@ -1,12 +1,12 @@
 package com.example.aet.activitys;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.SparseArray;
 
 import com.example.aet.R;
 import com.example.aet.data.AddressInfo;
@@ -22,7 +22,7 @@ import com.example.aet.fragment.AtelierListFragment;
  */
 public class AtelierListActivity extends BaseSlideTabActivity {
 
-	private HashMap<Integer, Fragment> mFragments;
+	private SparseArray<Fragment> mFragments;
 
 	private ArrayList<AddressInfo> mAddrs;
 
@@ -37,13 +37,14 @@ public class AtelierListActivity extends BaseSlideTabActivity {
 		setTabNames(names);
 		setIndicatorCount(names.length);
 
-		mFragments = new HashMap<Integer, Fragment>();
+		mFragments = new SparseArray<Fragment>(mAddrs.size());
 		setPagerAdapter(new AtelierListAdapter(getSupportFragmentManager()));
 	}
 
 	@Override
 	protected void initView(int layoutResID) {
-		setContentView(layoutResID);
+		super.initView(layoutResID);
+		setTitleText("画室");
 	}
 
 	private ArrayList<AddressInfo> getAddresses() {

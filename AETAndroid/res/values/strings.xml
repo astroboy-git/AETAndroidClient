@@ -52,5 +52,11 @@
         <item>作品点评</item>
         <item>院校</item>
     </string-array>
+    <string-array name="atelier_categories">
+        <item>简介</item>
+        <item>全景</item>
+        <item>作品</item>
+        <item>辉煌成就</item>
+    </string-array>
 
 </resources>

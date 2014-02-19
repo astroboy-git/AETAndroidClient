@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/topbar_height"
     android:background="@drawable/topbar_bg"
@@ -26,7 +27,7 @@
         android:textSize="@dimen/topbar_title_size" />
 
     <ImageButton
-        android:id="@+id/btnUser"
+        android:id="@+id/btnOption"
         android:layout_width="@dimen/topbar_btn_width"
         android:layout_height="@dimen/topbar_btn_height"
         android:layout_alignParentRight="true"
