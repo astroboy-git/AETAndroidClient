@@ -71,7 +71,6 @@ public class UserCenterActivity extends BaseActivity {
 		case ACTION_TO_RETRIEVE:
 			layoutResID = R.layout.activity_usercenter_retrieve;
 			break;
-
 		}
 		initView(layoutResID);
 	}

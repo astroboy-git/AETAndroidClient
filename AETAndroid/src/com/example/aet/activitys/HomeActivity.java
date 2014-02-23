@@ -1,25 +1,25 @@
 package com.example.aet.activitys;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 
 import com.example.aet.R;
-import com.example.aet.data.LoginInfo;
-import com.example.aet.data.RequestResult;
-import com.example.aet.managers.UserManager;
 
 /**
  * 
@@ -29,39 +29,40 @@ import com.example.aet.managers.UserManager;
  * 
  * @Version 1.0
  */
-public class HomeActivity extends BaseActivity {
+@SuppressLint("NewApi")
+public class HomeActivity extends BaseActivity implements OnQueryTextListener {
 
 	private static final String TAG = "HomeActivity";
-
-	private static final int MSG_PRO_TO_AUTOLOGIN = 0x00010101;
-
-	private static final int MSG_PRO_TO_INITDATA = 0x000100102;
-
-	private static final int MSG_UI_LOGIN_SUCCESS = 0x00010201;
-
-	private static final int MSG_UI_FINISH_INITDATA = 0x00010202;
-
-	private static final int TO_LOGIN_CODE = 0x01;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		initView(R.layout.activity_launcher);
+		initView(R.layout.activity_home);
 	}
 
 	@Override
 	protected void initView(int layoutResID) {
 		// TODO Auto-generated method stub
 		setContentView(layoutResID);
-		switch (layoutResID) {
-		case R.layout.activity_launcher:
-			initLaucherView();
-			break;
-		case R.layout.activity_home:
-			initHomeView();
-			break;
-		}
+		initActionBar();
+		initHomeView();
+	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actions, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+	private void initActionBar() {
+		// TODO Auto-generated method stub
 	}
 
 	private void initHomeView() {
@@ -143,93 +144,16 @@ public class HomeActivity extends BaseActivity {
 		}
 	}
 
-	private void initLaucherView() {
+	@Override
+	public boolean onQueryTextSubmit(String query) {
 		// TODO Auto-generated method stub
-		final LinearLayout userActionLayout = (LinearLayout) findViewById(R.id.userActionLayout);
-		userActionLayout.setVisibility(View.GONE);
-		if (UserManager.getInstance(this).isLogin()) {
-			sendProEmptyMsg(MSG_PRO_TO_INITDATA);
-			return;
-		}
-		final LoginInfo loginInfo = UserManager.getInstance(this)
-				.getLoginInfo();
-		if (loginInfo != null) {
-			if (loginInfo.isAutoLogin()) {
-				sendProEmptyMsg(MSG_PRO_TO_AUTOLOGIN);
-			} else {
-				toUserCenterActivity(UserCenterActivity.ACTION_TO_LOGIN);
-			}
-		} else {
-			userActionLayout.setVisibility(View.VISIBLE);
-			Button loginButton = (Button) findViewById(R.id.loginButton);
-			loginButton.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					toUserCenterActivity(UserCenterActivity.ACTION_TO_LOGIN);
-				}
-			});
-			Button registerButton = (Button) findViewById(R.id.registerButton);
-			registerButton.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					toUserCenterActivity(UserCenterActivity.ACTION_TO_REGISTER);
-				}
-			});
-		}
+		return false;
 	}
 
 	@Override
-	protected boolean handleUiMsg(Message msg) {
+	public boolean onQueryTextChange(String newText) {
 		// TODO Auto-generated method stub
-		switch (msg.what) {
-		case MSG_UI_LOGIN_SUCCESS:
-			sendProEmptyMsg(MSG_PRO_TO_INITDATA);
-			break;
-		case MSG_UI_FINISH_INITDATA:
-			initView(R.layout.activity_home);
-			break;
-		}
-		return super.handleUiMsg(msg);
-	}
-
-	@Override
-	protected boolean handlerProThreadMsg(Message msg) {
-		// TODO Auto-generated method stub
-		switch (msg.what) {
-		case MSG_PRO_TO_AUTOLOGIN:
-			RequestResult result = UserManager.getInstance(this).doAutologin();
-			if (result.getResultCode() == 200) {
-				sleep(3);
-				sendUiEmptyMsg(MSG_UI_LOGIN_SUCCESS);
-			}
-			break;
-		case MSG_PRO_TO_INITDATA:
-			sleep(2);
-			sendUiEmptyMsg(MSG_UI_FINISH_INITDATA);
-			break;
-		}
-		return super.handlerProThreadMsg(msg);
-	}
-
-	protected void toUserCenterActivity(int action) {
-		// TODO Auto-generated method stub
-		Intent userCenterIntent = new Intent(this, UserCenterActivity.class);
-		userCenterIntent.putExtra("action", action);
-		startActivityForResult(userCenterIntent, TO_LOGIN_CODE);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		if (resultCode == RESULT_OK && requestCode == TO_LOGIN_CODE) {
-			initView(R.layout.activity_launcher);
-			return;
-		}
-		super.onActivityResult(requestCode, resultCode, data);
+		return false;
 	}
 
 }

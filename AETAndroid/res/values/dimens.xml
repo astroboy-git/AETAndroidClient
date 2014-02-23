@@ -8,7 +8,7 @@
     <dimen name="padding_medium">8dp</dimen>
     <dimen name="padding_large">16dp</dimen>
     <dimen name="bottom_tab_font_size">10.0sp</dimen>
-    <dimen name="bottom_tab_padding_up">5.0dp</dimen>
+    <dimen name="bottom_tab_padding_up">10.0dp</dimen>
     <dimen name="bottom_tab_padding_bottom">0.0dp</dimen>
     <dimen name="bottom_tab_padding_drawable">2.0dp</dimen>
 

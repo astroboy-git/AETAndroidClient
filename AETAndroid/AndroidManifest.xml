@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.aet"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,9 +19,9 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <activity
-            android:name="com.example.aet.activitys.HomeActivity"
+            android:name="com.example.aet.activitys.LauncerActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,17 +29,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.aet.activitys.UserCenterActivity" >
+        <activity android:name="com.example.aet.activitys.HomeActivity"
+            android:theme="@style/CustomActivityTheme" >
+        </activity>
+        <activity
+            android:name="com.example.aet.activitys.UserCenterActivity" >
         </activity>
         <activity android:name="com.example.aet.activitys.OrganListActivity" >
         </activity>
         <activity
-            android:name=".activitys.AtelierListActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:name=".activitys.AtelierListActivity" >
         </activity>
         <activity
-            android:name=".activitys.AtelierActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:name=".activitys.AtelierActivity" >
         </activity>
     </application>
 
