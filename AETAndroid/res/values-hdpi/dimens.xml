@@ -3,9 +3,9 @@
 
     <!-- common begin -->
     <!-- topbar -->
-    <dimen name="topbar_height">45dp</dimen>
+    <dimen name="topbar_height">48dp</dimen>
     <dimen name="topbar_btn_height">30dp</dimen>
-    <dimen name="topbar_btn_width">30dp</dimen>
+    <dimen name="topbar_btn_width">10dp</dimen>
     <dimen name="topbar_title_size">20sp</dimen>
     <!-- common end -->
     

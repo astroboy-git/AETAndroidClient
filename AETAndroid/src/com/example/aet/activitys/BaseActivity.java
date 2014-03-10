@@ -1,5 +1,6 @@
 package com.example.aet.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -162,7 +163,7 @@ public class BaseActivity extends FragmentActivity {
 	 */
 	protected void initActionBarView() {
 		View btnBack = findViewById(R.id.btnBack);
-		View btnOption = findViewById(R.id.btnOption);
+		View btnOption = findViewById(R.id.userImageButton);
 
 		View.OnClickListener l = new View.OnClickListener() {
 
@@ -173,7 +174,7 @@ public class BaseActivity extends FragmentActivity {
 				case R.id.btnBack:
 					doBack();
 					break;
-				case R.id.btnOption:
+				case R.id.userImageButton:
 					doOption();
 					break;
 
@@ -211,7 +212,14 @@ public class BaseActivity extends FragmentActivity {
 	 * ActionBar 右边功能按钮响应事件
 	 */
 	protected void doOption() {
-
+		toUserCenter();
+	}
+	
+	protected void toUserCenter() {
+		// TODO Auto-generated method stub
+		Intent userCenterIntent = new Intent(this, UserCenterActivity.class);
+		userCenterIntent.putExtra("action", UserCenterActivity.ACTION_TO_USER);
+		startActivity(userCenterIntent);
 	}
 
 	/**

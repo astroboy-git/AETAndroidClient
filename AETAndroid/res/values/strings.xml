@@ -48,6 +48,7 @@
         <item>论坛</item>
         <item>作品点评</item>
         <item>院校</item>
+        <item>更多</item>
     </string-array>
     <string-array name="atelier_categories">
         <item>简介</item>

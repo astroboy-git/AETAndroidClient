@@ -2,10 +2,12 @@ package com.example.aet.activitys;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.example.aet.R;
@@ -21,6 +23,8 @@ import com.example.aet.fragment.AtelierListFragment;
  * 
  */
 public class AtelierListActivity extends BaseSlideTabActivity {
+	
+	private static final String TAG="AtelierListActivity";
 
 	private SparseArray<Fragment> mFragments;
 
@@ -31,20 +35,21 @@ public class AtelierListActivity extends BaseSlideTabActivity {
 		super.onCreate(savedInstanceState);
 
 		initView(R.layout.activity_atelier_list);
-
-		mAddrs = getAddresses();
-		String[] names = { "上海", "北京", "江苏", "浙江" };
-		setTabNames(names);
-		setIndicatorCount(names.length);
-
-		mFragments = new SparseArray<Fragment>(mAddrs.size());
-		setPagerAdapter(new AtelierListAdapter(getSupportFragmentManager()));
 	}
 
 	@Override
 	protected void initView(int layoutResID) {
 		super.initView(layoutResID);
-		setTitleText("画室");
+		Intent intent=getIntent();
+		String categroy=intent.getStringExtra("categroy");
+		Log.d(TAG, "categroy"+categroy);
+		setTitleText(categroy);
+		mAddrs = getAddresses();
+		String[] names = { "上海", "北京", "江苏", "浙江" };
+		setTabNames(names);
+		setIndicatorCount(names.length);
+		mFragments = new SparseArray<Fragment>(mAddrs.size());
+		setPagerAdapter(new AtelierListAdapter(getSupportFragmentManager()));
 	}
 
 	private ArrayList<AddressInfo> getAddresses() {

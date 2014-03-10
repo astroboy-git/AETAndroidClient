@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
             android:name="com.example.aet.activitys.LauncerActivity"
             android:label="@string/app_name" >
@@ -29,8 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.aet.activitys.HomeActivity"
-            android:theme="@style/CustomActivityTheme" >
+        <activity android:name="com.example.aet.activitys.HomeActivity" >
         </activity>
         <activity
             android:name="com.example.aet.activitys.UserCenterActivity" >
